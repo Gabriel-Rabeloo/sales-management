@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "categoria")
@@ -19,6 +22,8 @@ public class Category {
 	private Long id;
 	
 	@Column(name = "nome")
+	@NotBlank(message = "Name")
+	@Length(min = 3, max = 50, message = "Name")
 	private String name;
 
 	public Long getId() {

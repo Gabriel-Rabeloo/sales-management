@@ -3,6 +3,8 @@ package com.gvendas.gestaovendas.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -40,13 +42,13 @@ public class CategoryController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Category> save(@RequestBody Category category){
+	public ResponseEntity<Category> save(@Valid @RequestBody Category category){
 		Category categorySaved = categoryService.save(category);
 		return ResponseEntity.status(HttpStatus.CREATED).body(categorySaved);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Category> update(@PathVariable Long id,@RequestBody Category category) {
+	public ResponseEntity<Category> update(@PathVariable Long id,@Valid @RequestBody Category category) {
 		return ResponseEntity.ok(categoryService.update(id, category));
 	}
 }
